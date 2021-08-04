@@ -1,14 +1,11 @@
 {% extends 'bienvenido/base.html' %}
         
 {% block titulo %}
-    pagina saludar
+    pagina sumar
 {% endblock titulo %}
 
 {% block contenido %}
-    <p>
-        {{ nombre}}
-    </p>
-    <p>
-        {{apellido}}
-    </p>
+    <p>numero a: {{a}}</p>
+    <p>numero b: {{b}}</p>
+    <p>numero resultado: {{resultado}}</p>
 {% endblock %}
