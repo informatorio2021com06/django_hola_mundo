@@ -1,0 +1,20 @@
+{% extends 'bienvenido/base.html' %}
+        
+{% block titulo %}
+    Departamentos
+{% endblock titulo %}
+
+{% block contenido %}
+
+<ul>
+    {% for dpto in departamentos %}
+        <li>
+            <a href="{% url 'detalle_departamento' dpto.id%}">
+                {{dpto.id}}-{{dpto.nombre}}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

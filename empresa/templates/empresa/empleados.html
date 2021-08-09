@@ -1,0 +1,20 @@
+{% extends 'bienvenido/base.html' %}
+        
+{% block titulo %}
+    Departamentos
+{% endblock titulo %}
+
+{% block contenido %}
+
+<ul>
+    {% for emp in empleados %}
+        <li>
+            <a href="{% url 'detalle_empleado' emp.id %}">
+                {{emp.id}}-{{emp.nombre}}-{{emp.departamento.nombre}}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
