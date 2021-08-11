@@ -1,0 +1,30 @@
+{% extends 'bienvenido/base.html' %}
+        
+{% block titulo %}
+    nuevo empleado
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>NUEVO Empleado</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div>
+            <label for="field.id_for_label">
+                {{field.label}}
+            </label>
+            {{field}}
+            <div>
+                {{field.errors}}
+            </div>
+        </div>
+    {% endfor %}
+
+    <input type="submit" value="CREAR">
+</form>
+
+<!--  -->
+{% endblock %}
+
+{# dni nombre apellido sueldo fecha nacimiento departamento #}

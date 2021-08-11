@@ -1,0 +1,18 @@
+{% extends 'bienvenido/base.html' %}
+        
+{% block titulo %}
+    nuevo dpto
+{% endblock titulo %}
+
+{% block contenido %}
+<h1>NUEVO DEPARTAMENTO</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="CREAR">
+</form>
+
+<!--  -->
+{% endblock %}
+
+{# dni nombre apellido sueldo fecha nacimiento departamento #}

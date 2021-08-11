@@ -6,6 +6,11 @@
 
 {% block contenido %}
 
+<form action="" method="GET">
+    {{ formulario_busqueda }}
+    <input type="submit" value="buscar">
+</form>
+<a href="{% url 'nuevo_dpto' %}">NUEVO DEPARTAMENTO</a>
 <ul>
     {% for dpto in departamentos %}
         <li>
