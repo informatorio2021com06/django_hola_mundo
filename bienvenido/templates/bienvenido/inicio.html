@@ -5,10 +5,28 @@
 {% endblock titulo %}
 
 {% block contenido %}
-    <p>
-        {{ nombre}}
-    </p>
-    <p>
-        {{apellido}}
-    </p>
+    <h1>PAGINA DE INICIO</h1>
+    {% if request.user.is_authenticated %}
+        <p>usuario: {{request.user.username }}</p>
+        <p>birthday: {{request.user.birthday }}</p>
+        <a href="{% url 'cerrar_sesion' %}">Cerrar sesion</a>
+    {% else %}
+        <a href="{% url 'iniciar_sesion' %}">Iniciar sesion</a>
+        <a href="{% url 'crear_usuario' %}">registrarse</a>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_staff %}
+            <p>el usuario es staff</p>
+        {% else %}
+            <p>el usuario no es staff</p>
+        {% endif%}
+        {% if request.user.is_superuser %}
+            <p>el usuario es superusuario</p>
+        {% else %}
+            <p>el usuario no es superuser</p>            
+        {% endif%}
+    {% else %}
+        <p>Sin iniciar sesion</p>
+    {% endif %}
 {% endblock %}

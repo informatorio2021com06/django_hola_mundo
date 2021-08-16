@@ -1,6 +1,11 @@
 from django.shortcuts import redirect, render
 from .models import Departamento, Empleado
 from .forms import BusquedaForm, DepartamentoForm, EmpleadoForm
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+def usuario_es_staff(user):
+    return user.is_staff or user.is_superuser
+
 
 # Create your views here.
 def departamentos(request):
@@ -42,6 +47,11 @@ def departamento(request, id):
     return render(request, template, contexto)
 
 def nuevo_dpto(request):
+    if not request.user.is_authenticated:
+        return redirect("iniciar_sesion")
+    if not request.user.is_staff: 
+        return redirect("inicio")
+
     form = DepartamentoForm(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
@@ -53,7 +63,26 @@ def nuevo_dpto(request):
         "form":form,
     }
     return render(request, template, contexto)
-    
+
+@login_required
+@user_passes_test(usuario_es_staff)
+def editar_dpto(request,id):
+    dpto = Departamento.objects.get(pk=id)
+
+    form = DepartamentoForm(request.POST or None, instance=dpto)
+    if request.method == "POST":
+        if form.is_valid():
+            dpto = form.save()
+            print("form.save: ", dpto)
+            return redirect("detalle_departamento", dpto.id)
+    template = "empresa/nuevo_dpto.html"
+    contexto = {
+        "form":form,
+    }
+    return render(request, template, contexto)
+
+@login_required
+@user_passes_test(usuario_es_staff)
 def nuevo_empleado(request):
     form = EmpleadoForm(request.POST or None)
     if request.method == "POST":
@@ -66,3 +95,7 @@ def nuevo_empleado(request):
         "form":form,
     }
     return render(request, template, contexto)
+
+
+
+

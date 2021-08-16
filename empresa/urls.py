@@ -8,6 +8,7 @@ urlpatterns = [
     # crear departamento
     path("departamentos/nuevo/", views.nuevo_dpto, name='nuevo_dpto'),
     # editar departament
+     path("departamento/<int:id>/editar", views.editar_dpto,name="editar_dpto"),
     # borrar departamento
     path("empleados/", views.empleados,name="lista_empleados"),
     path("empleados/nuevo/", views.nuevo_empleado, name='nuevo_empleado'),

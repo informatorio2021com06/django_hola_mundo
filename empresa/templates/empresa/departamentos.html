@@ -10,7 +10,9 @@
     {{ formulario_busqueda }}
     <input type="submit" value="buscar">
 </form>
-<a href="{% url 'nuevo_dpto' %}">NUEVO DEPARTAMENTO</a>
+{% if request.user.is_staff %}
+    <a href="{% url 'nuevo_dpto' %}">NUEVO DEPARTAMENTO</a>
+{% endif %}
 <ul>
     {% for dpto in departamentos %}
         <li>

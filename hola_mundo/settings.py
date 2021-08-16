@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bienvenido',
     'empresa',
+    'cuenta',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#auth user 
+AUTH_USER_MODEL = 'cuenta.Perfil'
+LOGIN_URL = "iniciar_sesion"
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'inicio'
